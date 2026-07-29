@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A playful pre-game briefing deck for more intentional nights out." />
+  <title>Life of the Party — arrive with something to bring</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <nav><a class="brand" href="#top"><span class="brand-dot">✦</span> Life of the Party</a><a class="nav-link" href="#builder">Build tonight's deck <span>↘</span></a></nav>
+      <div class="hero-copy" id="top">
+        <p class="eyebrow">A better pre-game ritual</p>
+        <h1>Show up with<br><em>something to bring.</em></h1>
+        <p class="lede">A tiny, personal briefing for dinner, drinks, and every night you want to be more present than prepared.</p>
+        <a class="button primary" href="#builder">Build tonight's deck <span>→</span></a>
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><span class="orbit-tag one">a great question</span><span class="orbit-tag two">a useful story</span><span class="orbit-tag three">good timing</span><div class="orb">✦</div></div>
+    </section>
+
+    <section class="manifesto">
+      <p class="eyebrow">Why it exists</p>
+      <div class="manifesto-grid"><h2>The best conversationalists don't perform.<br><em>They make room.</em></h2><p>Life of the Party is a calm alternative to panic-scrolling before you walk in. It helps you arrive curious, informed, and ready to notice what the night needs—without turning friendship into homework.</p></div>
+    </section>
+
+    <section class="deck-intro" id="deck">
+      <p class="eyebrow">Your before-you-go deck</p>
+      <h2>Five cards. Ten minutes.<br><em>More room for the night.</em></h2>
+      <div class="feature-grid">
+        <article class="feature-card coral"><span>◉</span><h3>Room read</h3><p>Bring your people to mind before you enter the room.</p></article>
+        <article class="feature-card lime"><span>↗</span><h3>News pulse</h3><p>Context and a counterpoint, never a headline dump.</p></article>
+        <article class="feature-card blue"><span>✦</span><h3>Conversation sparks</h3><p>Interesting prompts you can make your own.</p></article>
+        <article class="feature-card violet"><span>⌁</span><h3>Host signal</h3><p>A small act of attention, right on time.</p></article>
+        <article class="feature-card gold"><span>→</span><h3>Graceful exit</h3><p>End a good night while it is still good.</p></article>
+      </div>
+    </section>
+
+    <section class="builder" id="builder">
+      <div class="builder-header"><p class="eyebrow">Try it here</p><h2>Build tonight's deck.</h2><p>Fictional demo content. In a real product, you control your people, sources, and privacy.</p></div>
+      <div class="builder-grid">
+        <form id="deck-form" class="setup-panel">
+          <label>What's the plan?<select id="event"><option value="drinks">Drinks with friends</option><option value="dinner">Dinner party</option><option value="birthday">Birthday celebration</option><option value="date">Date night</option></select></label>
+          <label>Who's coming? <span class="muted">(first names only)</span><input id="guests" placeholder="Maya, Theo, Sam" maxlength="120" /></label>
+          <fieldset><legend>How do you want to feel?</legend><div class="chip-row"><label class="chip"><input type="radio" name="mood" value="curious" checked><span>Curious</span></label><label class="chip"><input type="radio" name="mood" value="playful"><span>Playful</span></label><label class="chip"><input type="radio" name="mood" value="calm"><span>Grounded</span></label></div></fieldset>
+          <label>Minutes before you go <input id="minutes" type="range" min="5" max="20" step="5" value="10"><output id="minutes-output">10 minutes</output></label>
+          <button class="button dark" type="submit">Deal me in <span>→</span></button>
+        </form>
+        <section class="deck-panel" aria-live="polite"><div class="deck-topline"><span id="deck-title">Tonight's deck</span><span id="progress-label">0 of 5 explored</span></div><div class="progress-track"><span id="progress-bar"></span></div><div id="cards" class="cards"></div><button id="reset" class="text-button" type="button">Reset deck</button></section>
+      </div>
+    </section>
+    <section class="principles"><p class="eyebrow">A social tool with boundaries</p><div class="principle-grid"><div><b>People aren't profiles.</b><p>Names are just prompts for your memory, not data points to optimize.</p></div><div><b>Context over certainty.</b><p>Every news prompt should name its source, uncertainty, and a useful counterpoint.</p></div><div><b>Connection beats performance.</b><p>The goal is a better room—not a smarter-sounding you.</p></div></div></section>
+  </main>
+  <footer><span>Life of the Party</span><span>Arrive curious. Leave connected.</span></footer>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
