@@ -2,7 +2,7 @@
 
 A pre-game ritual for more intentional social plans: a five-card briefing deck that helps someone arrive **curious, informed, and attentive** before drinks, dinner, a birthday, or date night.
 
-> This is a portfolio prototype—not a production recommendation engine. All content is fictional and deliberately avoids claims of personalized social insight.
+> This is a portfolio prototype, not a production recommendation engine. It includes a curated content snapshot: evergreen prompts and original clean jokes, plus dated news topics and phone-ready source links. News is not automatically refreshed in this static build.
 
 ## Product point of view
 
@@ -12,6 +12,9 @@ Most tools frame social preparation as performance: say the clever thing, know t
 
 - An editorial, mobile-responsive landing experience
 - A configurable five-card “tonight's deck” for drinks, dinner, birthdays, and dates
+- **50 concrete content items**: 10 thought starters, 10 dated news topics, 10 conversation starters, 10 phone-ready ideas, and 10 original clean jokes
+- Source links on researched news and phone-ready cards, with a visible August 1, 2026 snapshot label
+- “Next idea” controls so each module can be browsed instead of showing one placeholder sentence
 - Guest-name prompts that remain client-side (no network calls, no persistence)
 - Completion state and progress feedback
 - Pure core rules with Node's built-in test runner
@@ -27,6 +30,10 @@ npm start
 ```
 
 The app is intentionally dependency-light. `npm run build` emits deployable static files in `dist/`.
+
+## Content and provenance
+
+The content library lives in [`src/content.js`](src/content.js). Each module has at least 10 items and every item has a type plus a provenance label. The News Pulse snapshot was assembled from live RSS feeds checked on **August 1, 2026** (NPR, The New York Times Technology, BBC News, The Guardian, and NASA). Evergreen social prompts and jokes are marked as original rather than presented as reported facts. The static app intentionally asks users to follow a source before treating a news card as current.
 
 ## Portfolio talking points
 

@@ -10,8 +10,9 @@ A short, user-configured deck that offers one people-centered prompt, one source
 
 ## MVP scope
 - Select event type, optional first names, mood, and prep time.
-- Generate a five-card deck.
-- Let users explore cards and see non-judgmental progress.
+- Generate a five-card deck from a curated library of 50 concrete items: 10 thought starters, 10 dated news topics, 10 conversation starters, 10 phone-ready ideas, and 10 original clean jokes.
+- Let users cycle through 10 items per card and see non-judgmental progress.
+- Show provenance links for reported/current content and label the news snapshot date.
 - Keep input client-side in the prototype.
 
 ## North-star and success metrics

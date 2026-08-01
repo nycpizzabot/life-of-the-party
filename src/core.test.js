@@ -7,10 +7,11 @@ test('normalizes, trims, and caps guest names', () => {
   assert.equal(normalizeGuests('a,b,c,d,e,f,g,h,i').length, 8);
 });
 
-test('builds a complete five-card deck with event context', () => {
+test('builds a complete five-card deck with researched content', () => {
   const deck = buildDeck({ event: 'dinner', guests: ['Ana'], mood: 'calm', minutes: 15 });
   assert.equal(deck.length, 5);
-  assert.match(deck[0].detail, /Ana/);
+  assert.equal(deck.every((card) => card.itemCount >= 10), true);
+  assert.equal(deck.every((card) => card.type), true);
   assert.match(deck[1].kicker, /Dinner/);
 });
 
