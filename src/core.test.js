@@ -15,6 +15,12 @@ test('builds a complete five-card deck with researched content', () => {
   assert.match(deck[1].kicker, /Dinner/);
 });
 
+test('uses live news items when provided', () => {
+  const deck = buildDeck({ news: [{ type: 'Live topic', title: 'Fresh headline', body: 'A live story.', source: { label: 'Test Feed', url: 'https://example.com/story' } }] });
+  assert.equal(deck[1].itemTitle, 'Fresh headline');
+  assert.equal(deck[1].itemCount, 1);
+});
+
 test('reports bounded deck completion percentage', () => {
   assert.equal(progress(3, 5), 60);
   assert.equal(progress(0, 0), 0);

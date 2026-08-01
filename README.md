@@ -13,9 +13,10 @@ Most tools frame social preparation as performance: say the clever thing, know t
 - An editorial, mobile-responsive landing experience
 - A configurable five-card “tonight's deck” for drinks, dinner, birthdays, and dates
 - **50 concrete content items**: 10 thought starters, 10 dated news topics, 10 conversation starters, 10 phone-ready ideas, and 10 original clean jokes
-- Source links on researched news and phone-ready cards, with a visible August 1, 2026 snapshot label
+- Source links on researched news and phone-ready cards, with a visible snapshot/freshness label
+- Live News Pulse updates through a server-side `/api/news` RSS proxy (15-minute edge cache plus stale-while-revalidate), with curated fallback content if fewer than three feeds respond
 - “Next idea” controls so each module can be browsed instead of showing one placeholder sentence
-- Guest-name prompts that remain client-side (no network calls, no persistence)
+- Guest-name prompts remain client-side (not sent to the news proxy; no persistence)
 - Completion state and progress feedback
 - Pure core rules with Node's built-in test runner
 - Product brief with hypotheses, metrics, safety guardrails, and next steps

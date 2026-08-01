@@ -8,9 +8,11 @@ const label = document.querySelector('#progress-label');
 const title = document.querySelector('#deck-title');
 const minutes = document.querySelector('#minutes');
 const output = document.querySelector('#minutes-output');
+const newsStatus = document.querySelector('#news-status');
 let settings = { event: 'drinks', guests: [], mood: 'curious', minutes: 10 };
 let offsets = {};
-let deck = buildDeck(settings);
+let liveNews = [];
+let deck = buildDeck({ ...settings, news: liveNews });
 let completed = new Set();
 
 function escapeHtml(value) {
@@ -40,7 +42,7 @@ function render() {
 }
 
 function rebuild() {
-  deck = buildDeck({ ...settings, offsets });
+  deck = buildDeck({ ...settings, offsets, news: liveNews });
   render();
 }
 
@@ -74,9 +76,46 @@ cards.addEventListener('click', (event) => {
   }
 });
 
+cards.addEventListener('pointermove', (event) => {
+  const card = event.target.closest('.deck-card');
+  if (!card || event.pointerType === 'touch') return;
+  const rect = card.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  card.style.setProperty('--ry', `${x * 5}deg`);
+  card.style.setProperty('--rx', `${y * -5}deg`);
+});
+cards.addEventListener('pointerleave', () => cards.querySelectorAll('.deck-card').forEach((card) => {
+  card.style.removeProperty('--ry');
+  card.style.removeProperty('--rx');
+}));
+
 minutes.addEventListener('input', () => output.textContent = `${minutes.value} minutes`);
 document.querySelector('#reset').addEventListener('click', () => { completed = new Set(); offsets = {}; rebuild(); });
 
 // Keep this as a lightweight invariant for the demo content library.
 if (Object.values(CONTENT).some((items) => items.length < 10)) console.warn('Every content module should contain at least 10 items.');
+
+async function loadLiveNews() {
+  if (!newsStatus) return;
+  newsStatus.textContent = 'Updating news…';
+  newsStatus.classList.add('is-loading');
+  try {
+    const response = await fetch('/api/news', { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error(`News request failed: ${response.status}`);
+    const payload = await response.json();
+    if (!Array.isArray(payload.items) || payload.items.length < 3) throw new Error('Not enough live items');
+    liveNews = payload.items;
+    newsStatus.textContent = `Live · updated ${payload.updatedLabel || 'just now'}`;
+    newsStatus.classList.remove('is-loading', 'is-fallback');
+    rebuild();
+  } catch (error) {
+    newsStatus.textContent = 'Using the latest saved pulse';
+    newsStatus.classList.remove('is-loading');
+    newsStatus.classList.add('is-fallback');
+    console.warn('Live news unavailable; using curated fallback.', error);
+  }
+}
+
 render();
+loadLiveNews();

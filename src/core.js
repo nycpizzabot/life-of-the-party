@@ -18,9 +18,9 @@ export function eventLabel(event) {
   return ({ dinner: 'Dinner', drinks: 'Drinks', birthday: 'Birthday', date: 'Date night' })[event] || 'Tonight';
 }
 
-export function buildDeck({ event = 'drinks', guests = [], mood = 'curious', minutes = 10, offsets = {} }) {
+export function buildDeck({ event = 'drinks', guests = [], mood = 'curious', minutes = 10, offsets = {}, news = [] }) {
   return MODULES.map((module, index) => {
-    const ideas = CONTENT[module.id];
+    const ideas = module.id === 'pulse' && news.length ? news : CONTENT[module.id];
     const itemIndex = ((offsets[module.id] || 0) + ideas.length) % ideas.length;
     const item = ideas[itemIndex];
     return {
@@ -29,11 +29,11 @@ export function buildDeck({ event = 'drinks', guests = [], mood = 'curious', min
       kicker: `${eventLabel(event)} · ${minutes} minute reset`,
       itemIndex,
       itemCount: ideas.length,
-      type: item.type,
+      type: item.type || 'Topic',
       itemTitle: item.title,
       detail: item.body,
       source: item.source,
-      snapshotDate: module.id === 'pulse' ? SNAPSHOT_DATE : null,
+      snapshotDate: module.id === 'pulse' ? (item.snapshotDate || SNAPSHOT_DATE) : null,
       mood
     };
   });
